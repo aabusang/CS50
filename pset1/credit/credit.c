@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <cs50.h>
 
+//A program to check the brand and validity of a credit card
 bool checksum(long ccn);
 void printBrand(long ccn);
 
