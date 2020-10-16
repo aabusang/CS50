@@ -34,15 +34,15 @@ int main(int argc, string argv[])
          {
              if (isupper(plaintext[i]))
              {
-                 char current = plaintext[i] - 65;
-                 char c = (current + key) % 26;
-                 printf("%c", (c + 65));
+                 //char current = plaintext[i] - 65;
+                 char c = (((plaintext[i] - 'A') + key) % 26) + 'A';
+                 printf("%c", c);
              }
              else if (islower(plaintext[i]))
              {
-                 char current = plaintext[i] - 97;
-                 char c = (current + key) % 26;
-                 printf("%c", (c+97));
+                 //char current = plaintext[i] - 97;
+                 char c = ( ((plaintext[i] - 'a') + key) % 26) + 'a';
+                 printf("%c", c);
              }
 
          }
