@@ -7,17 +7,18 @@ bool validKey(string s);
 
 int main(int argc, string argv[])
 {
+    string key = argv[1];
     if (argc != 2)
     {
         printf("Usage: ./substitution key...\n");
         return 1;
     }
-    else if (strlen(argv[1]) != 26)
+    else if (strlen(key) != 26)
     {
         printf("Key my be 26 characters\n");
         return 1;
     }
-    else if (!validKey(argv[1]))
+    else if (!validKey(key))
     {
         printf("Key may not repeat and may contain only alphabetic characters\n");
         return 1;
@@ -28,9 +29,27 @@ int main(int argc, string argv[])
         string plaintext = get_string("plaintext: ");
         printf("Under construction\n");
         
+        /**
+         * take the key and map it to a normal alphabetic order with their indexes
+         * jkfhs
+         * abcde
+         * how will I get a as j?
+         * have jkfhs as an array indexed 0 to 26
+         * take the plaintext, see whether a given char is lower or upper case
+         * convert all letter of key to one case, lower or upper
+         * if plaintext[i] is an alpha, what is its normal position in the alphabets,
+         * I can see if they are upper, then I sub 'A' or 'a' if they are lower to get their normal index
+         * then look at the key which character is at that index and do the substitution
+         * */
+         
+        /**
+         * 
+        **/
+        
     }
     
-    return 0;
+    
+    
 }
 
 
@@ -68,3 +87,4 @@ bool validKey(string s)
     }
     return true;
 }
+
