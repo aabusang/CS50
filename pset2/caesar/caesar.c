@@ -53,3 +53,12 @@ int main(int argc, string argv[])
      }
      printf("\n");
 }
+
+/**
+ * Mistake I was doing that made the whole project take a longer time
+ * I wa substraction 'a' or "A" for the index i like plaintext[i - a or A]
+ * instead of substracting it from the character
+ * 
+ * so basically I should substract from the character not it index. 
+ * 
+ * */
