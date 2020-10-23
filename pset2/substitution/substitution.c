@@ -3,10 +3,12 @@
 #include <string.h>
 #include <ctype.h>
 
-bool validKey(string s);
+bool validKey(string key);
 
 int main(int argc, string argv[])
 {
+    string plaintext;
+    
     string key = argv[1];
     if (argc != 2)
     {
@@ -15,7 +17,7 @@ int main(int argc, string argv[])
     }
     else if (strlen(key) != 26)
     {
-        printf("Key my be 26 characters\n");
+        printf("Key must contain 26 characters\n");
         return 1;
     }
     else if (!validKey(key))
@@ -25,31 +27,32 @@ int main(int argc, string argv[])
     }
     else
     {
-        printf("success so far\n");
-        string plaintext = get_string("plaintext: ");
-        printf("Under construction\n");
-        
-        /**
-         * take the key and map it to a normal alphabetic order with their indexes
-         * jkfhs
-         * abcde
-         * how will I get a as j?
-         * have jkfhs as an array indexed 0 to 26
-         * take the plaintext, see whether a given char is lower or upper case
-         * convert all letter of key to one case, lower or upper
-         * if plaintext[i] is an alpha, what is its normal position in the alphabets,
-         * I can see if they are upper, then I sub 'A' or 'a' if they are lower to get their normal index
-         * then look at the key which character is at that index and do the substitution
-         * */
-         
-        /**
-         * 
-        **/
-        
+        plaintext = get_string("plaintext: ");
     }
     
+    printf("Under construction\n");
     
-    
+    for (int i = 0; i < strlen(plaintext); i++)
+    {
+        char c = plaintext[i];
+        
+        if (isalpha(c)){
+            // encrypt it
+            //remember to convert all key characters to one case
+            if (isupper(c))
+            {
+                //encrypt and make upper case
+            }
+            else
+            {
+                //encrypt and make lower case
+            }
+        }
+        else
+        {
+            printf("%c", c);
+        }
+    }
 }
 
 
@@ -61,24 +64,24 @@ int main(int argc, string argv[])
  * if s[i] == s[j] and i != j then there is a repeated character
  * */
  
-bool validKey(string s)
+bool validKey(string key)
 {
     for (int i = 0; i < 26; i++)
     {
-        if (!isalpha(s[i]))
+        if (!isalpha(key[i]))
          {
              return false;
          }
-        if (isupper(s[i]))
+        if (isupper(key[i])) //making all key[i]s lower case
         {
-            s[i] = s[i] + 32; 
+            key[i] = key[i] + 32; 
         }
          for (int j = 0; j < 26; j++)
          {
-             if (isupper(s[j])) 
-                 s[j] = s[j] + 32; 
+             if (isupper(key[j]))  //making all key[j]s lower case
+                 key[j] = key[j] + 32; 
              {
-                 if ( (s[i] == s[j]) && i != j)
+                 if ( (key[i] == key[j]) && i != j) //comparing to make sure there is not repetitions
                  {
                      return false;
                  }
