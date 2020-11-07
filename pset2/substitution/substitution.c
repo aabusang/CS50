@@ -8,7 +8,7 @@ bool validKey(string key);
 int main(int argc, string argv[])
 {
     string plaintext;
-    
+
     string key = argv[1];
     if (argc != 2)
     {
@@ -22,38 +22,54 @@ int main(int argc, string argv[])
     }
     else if (!validKey(key))
     {
-        printf("Key may not repeat and may contain only alphabetic characters\n");
+        printf("Key may not repeat and may \ncontain only alphabetic characters\n");
         return 1;
     }
     else
     {
         plaintext = get_string("plaintext: ");
     }
-    
-    printf("Under construction\n");
-    
+
+    //printf("Success for far, the rest is Under construction\n");
+    /**
+     *
+     * the key has already been converted to all lower case from my keyValidation function
+     *
+     *
+    **/
+    char cipher;
+    printf("ciphertext: ");
     for (int i = 0; i < strlen(plaintext); i++)
     {
-        char c = plaintext[i];
-        
-        if (isalpha(c)){
-            // encrypt it
-            //remember to convert all key characters to one case
-            if (isupper(c))
+        char p = plaintext[i];
+        // char k = key[i];
+
+        if (isalpha(p)){
+            if (isupper(p))
             {
-                //encrypt and make upper case
+                int index = p - 'A';
+                printf("%c", (key[index] - 32));
             }
             else
             {
-                //encrypt and make lower case
+                int index = p - 'a';
+                printf("%c", (key[index]));
             }
         }
         else
         {
-            printf("%c", c);
+            printf("%c", p);
         }
     }
+    printf("\n");
 }
+
+
+
+
+
+
+
 
 
 
@@ -63,7 +79,7 @@ int main(int argc, string argv[])
  * adding 32 will turn any upper case letter to its lower case form.
  * if s[i] == s[j] and i != j then there is a repeated character
  * */
- 
+
 bool validKey(string key)
 {
     for (int i = 0; i < 26; i++)
@@ -74,12 +90,12 @@ bool validKey(string key)
          }
         if (isupper(key[i])) //making all key[i]s lower case
         {
-            key[i] = key[i] + 32; 
+            key[i] = key[i] + 32;
         }
          for (int j = 0; j < 26; j++)
          {
-             if (isupper(key[j]))  //making all key[j]s lower case
-                 key[j] = key[j] + 32; 
+             if (isupper(key[j]))  //converting all to lower case
+                 key[j] = key[j] + 32;
              {
                  if ( (key[i] == key[j]) && i != j) //comparing to make sure there is not repetitions
                  {

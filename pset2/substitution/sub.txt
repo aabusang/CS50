@@ -1,0 +1,10 @@
+What made me not finish this problem faster.
+
+1. Because I didn't have a good view or understanding on how the substitution
+should be done although I understood the general idea.
+
+What helped?
+
+I visualized the problem in google sheets
+
+I refered back to my caesar code
