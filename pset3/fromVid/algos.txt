@@ -1,0 +1,68 @@
+
+Item to search for is 50
+Linear Search:
+for i from 0 to n-1;
+    if i'th item is 50
+        return true;
+return false;
+
+
+Binary Search:
+
+if no items
+    return false;
+
+if middle item is 50
+    return true;
+else if 50 < middle item
+    search left side of list/array
+else if 50 > middle item
+    search right half of list/array
+
+
+BIG O - on the order of
+Worst Case
+
+O(n) - on the order of n
+O(n/2) - on the order of n/2
+
+n and n/2 is almost the same
+
+O(n^2)      Bubble, Selection sort
+O(n log n)  Merge sort = n rows * n columns
+O(n)        Linear search
+O(log n)    Binary search
+O(1)
+
+OMEGA - The opposite of Big O
+Best case
+
+Ω(n^2)      Selection sort
+Ω(n log n)
+Ω(n)        Bubble sort
+Ω(log n)
+Ω(1)        Binary, Linear search - Only 1 step need in best case
+
+
+
+Bubble Sort:
+repeat until no swaps (or n - 1 times)
+from 0 to n - 2;
+    if i'th item is > i+1th item
+        swap them
+
+
+Selection Sort:
+for i from 0 to n - 1
+    find the smallest item between the i'th item with that last item
+    swap i'th item with the smallest item
+
+
+Merge sort:
+if only one item
+    return
+else
+    sort the left half of items
+    sort the right half of items
+    merge them,
+
