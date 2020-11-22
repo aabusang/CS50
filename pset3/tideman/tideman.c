@@ -250,7 +250,7 @@ void lock_pairs(void)
         y = pairs[i].loser;
         for (int j = i + 1; j < pair_count; j++)
         {
-            if ((pairs[i].winner != pairs[j].winner)) // if current winner is not same as any prev winner but j
+            if (x != pairs[j].winner) // if current winner is not the same as their son
             {
                 locked[x][y] = true;
             }
