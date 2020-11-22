@@ -250,11 +250,13 @@ void lock_pairs(void)
         y = pairs[i].loser;
         for (int j = i + 1; j < pair_count; j++)
         {
-            if (x != pairs[j].winner) // if current winner is not the same as their son
+            //skip final pair if it creates cycle
+            if (x != pairs[j].winner) // if current winner is not the same as their son. wh
             {
                 locked[x][y] = true;
             }
-            if (x == pairs[j].winner) //locks all if no cycle and skip middel if create cycle
+            //locks all if no cycle and skip middel if create cycle;
+            if (x == pairs[j].winner) // if current winner is same as other incoming winners lock those incoming pairs
             {
                 locked[x][pairs[j].loser] = true;
             }
