@@ -89,42 +89,14 @@ int main(int argc, string argv[])
 
         record_preferences(ranks);
     }
-    // printf("prefs...\n");
-    // for (int i = 0; i < candidate_count; i++)
-    // {
-    //     for (int j = 0; j < candidate_count; j++)
-    //     {
-    //         printf("%d ", preferences[i][j]);
-    //     }
-    //     printf("\n");
-    // }
+
     add_pairs();
     sort_pairs();
 
-    // printf("\npairs...\n");
-    // for (int i = 0; i < pair_count; i++)
-    // {
-    //     printf("%d: | %d | %d | \n",i, pairs[i].winner, pairs[i].loser);
-    // }
-
-    // printf("\nlocked array...\n");
-    // for (int i = 0; i < candidate_count; i++)
-    // {
-    //     for (int j = 0; j < candidate_count; j++)
-    //     {
-    //         if (locked[i][j] == true)
-    //         {
-    //             printf("T ");
-    //         }
-    //         else
-    //         {
-    //             printf("F ");
-    //         }
-    //     }
-    //     printf("\n");
-    // }
-    // printf("\n");
-
+    for (int i = 0; i < pair_count; i++)
+    {
+        printf("%d, %d\n", pairs[i].winner, pairs[i].loser);
+    }
     lock_pairs();
     print_winner();
     return 0;
@@ -153,9 +125,9 @@ void record_preferences(int ranks[])
     int win, los;
     for (int i = 0; i < candidate_count; i++)
     {
-        win = ranks[i];
         for (int j = i + 1; j < candidate_count; j++)
         {
+            win = ranks[i];
             los = ranks[j];
             preferences[win][los]++;
         }
@@ -229,37 +201,45 @@ void sort_pairs(void)
     return;
 }
 
+bool makes_cycle(int winner, int loser)
+{
+    if (locked[loser][winner])
+    {
+        return true;
+    }
+    else
+    {
+        for (int i = 0; i < pair_count; i++)
+        {
+            if (locked[loser][pairs[i].winner]) //if loser has locked with any winner already locked
+            {
+                if (locked[pairs[i].winner][winner]) //if loser's loser is loser's winner then there is a cycle
+                {
+                    return true;
+                }
+                else
+                {
+                    //else put this point in loop at a safe place and
+                    //call this function again with the most recent loser
+                    return makes_cycle(winner, pairs[i].winner);
+                }
+            }
+        }
+    }
+    return false;
+}
 // Lock pairs into the candidate graph in order, without creating cycles
 void lock_pairs(void)
 {
     // TODO
-
-     /*
-        0 child is 1, does 1 have a child? if so
-        see whether the child is a parent or an ancestor of 1
-        if so then there is a cycle in the graph
-
-        if current loser is a winner in previous locked pairs then there is a cycle
-    */
-    int x = 0;
-    int y = 0;
-
+    int x, y;
     for (int i = 0; i < pair_count; i++)
     {
         x = pairs[i].winner;
         y = pairs[i].loser;
-        for (int j = i + 1; j < pair_count; j++)
+        if (!makes_cycle(x, y))
         {
-            //skip final pair if it creates cycle
-            if (x != pairs[j].winner) // if current winner is not the same as their son. wh
-            {
-                locked[x][y] = true;
-            }
-            //locks all if no cycle and skip middel if create cycle;
-            if (x == pairs[j].winner) // if current winner is same as other incoming winners lock those incoming pairs
-            {
-                locked[x][pairs[j].loser] = true;
-            }
+            locked[x][y] = true;
         }
     }
     return;
