@@ -30,11 +30,7 @@ int main(int argc, string argv[])
         plaintext = get_string("plaintext: ");
     }
 
-    //printf("Success for far, the rest is Under construction\n");
     /**
-     *
-     * the key has already been converted to all lower case from my keyValidation function
-     *
      *
     **/
     char cipher;
@@ -48,7 +44,7 @@ int main(int argc, string argv[])
             if (isupper(p))
             {
                 int index = p - 'A';
-                printf("%c", (key[index] - 32));
+                printf("%c", (key[index] - 32)); // - 32 to bring it back to upper case as all keys were changes to lower case
             }
             else
             {
