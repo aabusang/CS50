@@ -1,0 +1,1 @@
+SELECT name FROM songs JOIN artists ON songs.artists_id = artists.id

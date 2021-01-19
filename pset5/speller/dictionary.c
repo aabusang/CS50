@@ -100,7 +100,6 @@ unsigned int size(void)
 bool unload(void)
 {
     // TODO
-
     int index = 0;
     while (table[index] != NULL)
     {
